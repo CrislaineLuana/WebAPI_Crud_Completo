@@ -27,6 +27,9 @@ namespace WebAPI_Video.Service.FuncionarioService
                     return serviceResponse;
                 }
 
+                novoFuncionario.DataDeCriacao = DateTime.Now.ToLocalTime();
+                novoFuncionario.DataDeAlteracao = DateTime.Now.ToLocalTime();
+
                 _context.Add(novoFuncionario);
                 await _context.SaveChangesAsync();
 
