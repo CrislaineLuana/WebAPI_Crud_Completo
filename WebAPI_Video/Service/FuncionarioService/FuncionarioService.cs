@@ -51,7 +51,7 @@ namespace WebAPI_Video.Service.FuncionarioService
 
             try
             {
-                FuncionarioModel funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == id);
+                FuncionarioModel funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == id + 1);
 
                 if (funcionario == null)
                 {
@@ -113,7 +113,8 @@ namespace WebAPI_Video.Service.FuncionarioService
 
             try
             {
-                serviceResponse.Dados = _context.Funcionarios.ToList();
+                var funcionarios = _context.Funcionarios.ToList();
+                
 
                 if(serviceResponse.Dados.Count == 0)
                 {
@@ -147,7 +148,7 @@ namespace WebAPI_Video.Service.FuncionarioService
                     serviceResponse.Sucesso = false;
                 }
 
-                funcionario.Ativo = false;
+                funcionario.Ativo = true;
                 funcionario.DataDeAlteracao = DateTime.Now.ToLocalTime();
 
                 _context.Funcionarios.Update(funcionario);
