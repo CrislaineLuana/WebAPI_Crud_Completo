@@ -34,7 +34,7 @@ namespace WebAPI_Video.Service.FuncionarioService
                 await _context.SaveChangesAsync();
 
                 serviceResponse.Dados = _context.Funcionarios.ToList();
-                serviceResponse.Mensagem = "Usuário cadastrado com sucesso!";
+             
 
             }catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace WebAPI_Video.Service.FuncionarioService
 
             try
             {
-                FuncionarioModel funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == id);
+                FuncionarioModel funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == id + 1);
 
                 if (funcionario == null)
                 {
@@ -115,7 +115,7 @@ namespace WebAPI_Video.Service.FuncionarioService
             {
                 var funcionarios = _context.Funcionarios.ToList();
 
-                serviceResponse.Dados = funcionarios;
+          
 
                 if(serviceResponse.Dados.Count == 0)
                 {
@@ -149,7 +149,7 @@ namespace WebAPI_Video.Service.FuncionarioService
                     serviceResponse.Sucesso = false;
                 }
 
-                funcionario.Ativo = false;
+                funcionario.Ativo = true;
                 funcionario.DataDeAlteracao = DateTime.Now.ToLocalTime();
 
                 _context.Funcionarios.Update(funcionario);
