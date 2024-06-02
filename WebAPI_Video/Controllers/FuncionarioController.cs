@@ -15,12 +15,25 @@ namespace WebAPI_Video.Controllers
             _funcionarioInterface = funcionarioInterface;
         }
 
+
+        /// <summary>
+        /// Retorna todos os funcionários
+        /// </summary>
+        /// <returns>Retorna uma lista com todos os funcionários</returns>
+        /// <response code="200">Sucesso</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> GetFuncionarios()
         {
-            return Ok( await _funcionarioInterface.GetFuncionarios());
+            return Ok(await _funcionarioInterface.GetFuncionarios());
         }
 
+        /// <summary>
+        /// Retorna um funcionário de acordo com o Id
+        /// </summary>
+        /// <param name="id">Identificador do funcionário</param>
+        /// <returns>Retorna um objeto de funcionário</returns>
+        /// <response code="200">Sucesso</response>
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<FuncionarioModel>>> GetFuncionarioById(int id)
         {
@@ -29,7 +42,24 @@ namespace WebAPI_Video.Controllers
             return Ok(serviceResponse);
         }
 
+        /// <summary>
+        /// Adiciona um novo funcionário
+        /// </summary>
+        /// <remarks>
+        /// "id": 0,
+        ///"nome": "string",
+        ///"sobrenome": "string",
+        ///"departamento": "RH",
+        ///"ativo": true,
+        ///"turno": "Manha",
+        ///"dataDeCriacao": "2024-06-02T13:56:34.891Z",
+        ///"dataDeAlteracao": "2024-06-02T13:56:34.891Z"
+        /// </remarks>
+        /// <param name="novoFuncionario">Objeto funcionario </param>
+        /// <returns>Retorna a lista de funcionários atualizada</returns>
+        /// <response code="200">Sucesso</response>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> CreateFuncionario(FuncionarioModel novoFuncionario)
         {
             return Ok(await _funcionarioInterface.CreateFuncionario(novoFuncionario));
